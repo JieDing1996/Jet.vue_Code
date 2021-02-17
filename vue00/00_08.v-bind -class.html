@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		.c01{
+	    			color: #f00;
+	    		}
+				[type="button"]{
+					color: #0f0;
+					cursor: pointer;
+					background: #000;
+				}
+	    </style>
+	    
+	</head>
+	<body>
+		
+		<!--插图片-->
+	    <div id="app">
+		    <h1 class="jia" :class="'aaa'">class="jia aaa"------{{msg}}</h1><!--组合-->
+		    <h1 class="jia" :class="bbb">class="jia bbb"----{{msg}}</h1>
+		    <h1 class="jia" :class="{bbb:true,aaa:true,eee:true}">class="jia bbb aaa eee"--引号可加可不加---{{msg}}</h1>
+		    <h1 class="jia" :class="['aaa','ccc','ddd']">class="jia ccc aaa ddd"----{{msg}}</h1>	
+			<h1>==============</h1>
+			<h1 :class="{c01:isC01}">这是红色</h1>
+			<button type="button" v-on:click="btn01">按钮</button>
+			
+			<h1 :class="getClasses()">调用得到class对象</h1>
+			
+		    <h1 :class="getSzClasses()">得到class数组</h1>
+			
+		</div>
+		<script type="text/javascript">
+          const app=new Vue({
+			  el:document.querySelector("#app"),
+			  data:{
+				 msg :"牛逼",
+		         bbb:"bbb",
+				 isC01:true,
+				 dv:"dv",
+				 vcd:"vcd"
+			  },
+			  methods:{
+				  btn01(){
+					 this.isC01=!this.isC01;
+				  },
+				  getClasses(){
+					  return {aaa:true,ccc:true,fff:true,"eee":true};
+				  },
+				  getSzClasses(){
+					  return ["ggg","hhhh",this.dv,this.vcd];
+				  }
+			  }
+		  });  
+		 
+		</script>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		
+				button,[type="button"]{
+					cursor: pointer;
+					min-width: 25px;
+				}
+	    </style>
+	    
+	</head>
+	<body> 
+	     <div id="app">   
+		      <!--lazy 敲回车才能绑定-->
+		      <input type="text" v-model.lazy="msg">
+			  <h1>{{msg}}</h1>
+			  
+			  <!--number 转成数字类型-->
+			  <input type="text" v-model="age">
+			  <input type="text" v-model.number="age">
+			  <h1>{{age+"+++"+typeof age}}</h1>
+			  
+			  <!--trim 去掉左右两边的空格-->
+			   <input type="text" v-model="str">
+			   <input type="text" v-model.trim="str">
+			    <h1>您输入的内容:{{str}}</h1>
+	     </div> 
+	    <script>
+	        const app = new Vue({
+	          el: '#app',
+	          data: {
+				  msg:"你好",
+				  age:0,
+				  str:"哔哔"
+ 	          }
+	        });
+	    </script>
+	     
+		
+	</body>
+</html>

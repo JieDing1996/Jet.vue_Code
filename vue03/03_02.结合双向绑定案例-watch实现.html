@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<cpn v-on:num1change="fuNmum1" v-on:num2change="fuNmum2" :number1="num01" :number2="num02"></cpn>
+		</div>
+		<template id="cpn">
+			<div>
+				<h2>props01:  {{number1}}</h2>
+				<h2>data01.dnumber1:  {{dnumber1}}</h2>		 
+				<input type="text" v-model="dnumber1"/>
+				
+				<h2>props02:  {{number2}}</h2>
+				<h2>data02.dnumber2:  {{dnumber2}}</h2>				
+				<input type="text" v-model="dnumber2"/>
+			</div>
+		</template>
+		<script type="text/javascript">
+			
+			const cpn={
+						template:"#cpn",
+						props:{
+							number1:Number,
+							number2:Number,     //  props传的数据要通过子组件发射数据 父组件接受才能改变
+						    name:''
+						},
+						
+						data(){
+							return {
+								dnumber1:this.number1,
+								dnumber2:this.number2,
+							}
+						},
+						
+						watch:{ //监听某一个属性的改变
+							dnumber1(newVal){
+								this.dnumber2=newVal*100;
+								this.$emit("num1change",newVal);
+							},
+							dnumber2(newVal){
+								this.dnumber1=newVal/100;
+								this.$emit("num2change",newVal);
+							},
+							name(newVal,oldVal){
+								
+							}
+						}
+			        }
+			const app=new Vue({
+				el:"#app",
+				data:{
+					num01:1,
+					num02:0
+				},				
+				methods:{
+					fuNmum1(value){
+						this.num01=parseFloat(value);
+					},
+					fuNmum2(value){
+						this.num02=parseFloat(value);
+					}
+				},
+				components:{
+					cpn					
+				}
+			});
+		</script>
+	</body>
+</html>

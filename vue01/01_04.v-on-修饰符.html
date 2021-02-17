@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		.c01{
+	    			color: #f00;
+	    		}
+				button,[type="button"]{
+					color: #fff;
+					cursor: pointer;
+					background: #000;
+					min-width: 25px;
+				}
+	    </style>
+	    
+	</head>
+	<body>
+		
+	 
+	    <div id="app">
+		     <div :style="{'background':'#f00'}" @click="divClick">
+				 <!-- .stop阻止冒泡 -->
+				 <button @click.stop="btnClick" :style="{height:'30px'}"></button>
+				 <!-- .prevent阻止默认事件 -->
+				 <form action="" method="post">				 	
+				 	<input @click.prevent="submitClick" type="submit" value="提交"/>
+				 	<input @click.prevent.stop="submitClick" type="submit" value="提交"/>
+				 </form> 		 
+			 </div>
+			 <!-- .once只触发一次 -->
+			 <button @click.once="btnClick" :style="{height:'30px'}">.once只触发一次</button> 
+			 
+			 
+			 <!--监听键盘-->			 	
+			 <input placeholder="监听键盘" :style="{'color':'#fff','background':'#000'}" type="text" @keyup="keyup">
+			  <!--按下回车键调用-->	
+			 <input placeholder="按下回车键调用" :style="{'color':'#fff','background':'#f00'}" type="text" @keyup.enter="keyup">
+			  <!--按下a键调用-->	
+			 <input placeholder="按下a键调用" :style="{'color':'#fff','background':'#f00'}" type="text" @keyup.a="keyup">
+			  <!--按下b键调用-->	
+			 <input placeholder="按下b键调用" :style="{'color':'#fff','background':'#f00'}" type="text" @keyup.b="keyup">
+			  <!--按下c键调用-->	
+			 <input placeholder="按下c键调用" :style="{'color':'#fff','background':'#f00'}" type="text" @keyup.c="keyup">
+		</div>
+
+		
+		<script type="text/javascript">
+          const app=new Vue({
+			  el:document.querySelector("#app"),
+			  data:{
+			    
+			  },
+			  methods:{
+				 divClick(){
+					console.log("divClick"); 
+				 },
+				 btnClick(){
+					console.log("btnClick"); 
+				 },
+				 submitClick(){
+					 console.log("submitClick");
+				 },
+				 keyup(){
+					 console.log(464586);
+				 }
+			  }
+			  		
+		  });  
+		 
+		</script>
+	</body>
+</html>

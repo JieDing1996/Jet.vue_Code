@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">	<!--app里的所有内容都属于父组件-->	  
+	      <cpn v-show="isShow"></cpn>  <!--用的是实例Vue的-->
+		</div>
+
+   
+		<template id="cpn">
+			<div>
+		        <h3>我是子组件</h3>
+		        <p>我是内容，哈哈哈</p>
+				<h2 v-show="isShow">子组件的isShow</h2>  <!--去子组件查找它自己的-isShow-->
+			</div>
+		</template>
+		
+		<script type="text/javascript">
+			const app=new Vue({
+				el:"#app",
+				data:{
+				 msg:"你好啊",
+				 isShow:true
+				},
+                components:{
+					cpn:{
+						template:"#cpn",
+						data(){
+							return {
+								isShow:false
+							}
+						}
+					}
+				}			
+			});
+		</script>
+	</body>
+</html>

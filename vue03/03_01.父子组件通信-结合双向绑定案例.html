@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<cpn v-on:num1change="fuNmum1" v-on:num2change="fuNmum2" :number1="num01" :number2="num02"></cpn>
+		</div>
+		<template id="cpn">
+			<div>
+				<h2>props01:  {{number1}}</h2>
+				<!-- <input type="text" v-model="number1" /> --> 
+			    <!-- 应由父组件对它进行重写,方法是子组件以props为基础，用data或者computed(看报错)，避免直接改变props传的值 -->
+				<h2>data01.dnumber1:  {{dnumber1}}</h2>
+				<!-- <input type="text" v-model="dnumber1"/> -->
+				<input type="" v-bind:value="dnumber1" v-on:input="num1Input"/>
+				<h2>props02:  {{number2}}</h2>
+				<h2>data02.dnumber2:  {{dnumber2}}</h2>				
+				<!-- <input type="text" v-model="dnumber2"/> -->
+				<input type="text" v-bind:value="dnumber2" @input="num2Input">
+			</div>
+		</template>
+		<script type="text/javascript">
+			
+			const cpn={
+						template:"#cpn",
+						props:{
+							number1:Number,
+							number2:Number     //  props传的数据要通过子组件发射数据 父组件接受才能改变
+						},
+						
+						data(){
+							return {
+								dnumber1:this.number1,
+								dnumber2:this.number2,
+							}
+						},
+						methods:{
+							
+							//  两个需求：
+							//   1. props和data数据联动
+							//   2. data02/props02是data01/props01的100倍 
+							num1Input(event){
+								
+								// 1.将input中的value赋值到dnumber中
+								this.dnumber1=event.target.value;
+								
+								// 2.为了让父组件可以修改值，发出一个事件
+								this.$emit("num1change",this.dnumber1);
+								
+								// 3。同时修改dnumber2的值
+								this.dnumber2=this.dnumber1*100;
+								this.$emit("num2change",this.dnumber2);
+							},
+							num2Input(event){
+								this.dnumber2=event.target.value;
+								this.$emit("num2change",this.dnumber2);			
+													
+								this.dnumber1=this.dnumber2/100;
+								this.$emit("num1change",this.dnumber1);											
+							}
+						}
+			        }
+			const app=new Vue({
+				el:"#app",
+				data:{
+					num01:1,
+					num02:0
+				},				
+				methods:{
+					fuNmum1(value){
+						this.num01=parseFloat(value);
+					},
+					fuNmum2(value){
+						this.num02=parseFloat(value);
+					}
+				},
+				components:{
+					cpn					
+				}
+			});
+		</script>
+	</body>
+</html>

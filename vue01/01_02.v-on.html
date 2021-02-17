@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		.c01{
+	    			color: #f00;
+	    		}
+				button,[type="button"]{
+					color: #fff;
+					cursor: pointer;
+					background: #000;
+					min-width: 25px;
+				}
+	    </style>
+	    
+	</head>
+	<body>
+		
+	 
+	    <div id="app">
+		    	<h1>{{msg01}}</h1>
+				<button v-on:click="jian">-</button>
+				<button v-on:click="jia">+</button>
+				<h1>{{msg02}}</h1>
+				<button @click="msg02--">-</button>
+				<button @click="msg02++">+</button>
+		</div>
+		<script type="text/javascript">
+          const app=new Vue({
+			  el:document.querySelector("#app"),
+			  data:{
+			    msg01:0,
+			    msg02:0	
+			  },
+			  methods:{
+				  jia(){
+					  this.msg01++;
+				  },
+				  jian(){
+					  this.msg01--;
+				  }
+				  
+			  }
+			  		
+		  });  
+		 
+		</script>
+	</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		
+				button,[type="button"]{
+					cursor: pointer;
+					min-width: 25px;
+				}
+	    </style>
+	    
+	</head>
+	<body> 
+	     <div id="app">   
+		        <!--input值绑定就是初始数据不是写死的-->
+		        <label :for="item" v-for="item in originHobbies">
+					<input type="checkbox" :id="item" :value="item" v-model="hobbies">{{item}}
+			    </label>
+				<h1>您的爱好是：{{hobbies}}</h1>				
+	     </div> 
+	    <script>
+	        const app = new Vue({
+	          el: '#app',
+	          data: {
+	              isAgree:false,
+				  hobbies:[],
+				  originHobbies:["篮球","足球","乒乓球","羽毛球","台球","高尔夫球"]
+	          }
+	        });
+	    </script>
+	     
+		
+	</body>
+</html>

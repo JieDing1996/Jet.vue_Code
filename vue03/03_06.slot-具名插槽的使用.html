@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">		  
+			<cpn></cpn>
+			<h3>=============</h3>
+			<cpn><span>标题</span></cpn><!--可以替换掉下面的哈哈哈-->
+			<h3>=============</h3>
+			<cpn><button slot="left">按钮</button></cpn>
+			<h3>=============</h3>
+			<cpn>
+				<input slot="center" type="text" placeholder="中间的输入框">
+			</cpn>
+			<h3>=============</h3>
+			<cpn>
+				<b slot="right">
+					更多
+				</b>
+			</cpn>
+			<h3>=============</h3>
+			<cpn>
+				<cpn><button slot="left">按钮</button></cpn>
+						
+				<input slot="center" type="text" placeholder="中间的输入框">
+				
+				<b slot="right">
+					更多
+				</b>
+			</cpn>
+			
+		</div>
+
+        <!-- slot插槽 抽取共性 保留不同 --> 
+		<template id="cpn">
+			<div>
+		      <slot name="left"><span>左边</span></slot>
+		      <slot name="center"><span>中间</span></slot>
+		      <slot name="right"><span>右边</span></slot>
+		      <!--  <slot>哈哈哈</slot> --><!--可以被上面的<span>标题</span>替换掉-->
+			</div>
+		</template>
+		
+		<script type="text/javascript">
+			const app=new Vue({
+				el:"#app",
+				data:{
+				 msg:"你好啊"
+				},
+                components:{
+					cpn:{
+						template:"#cpn"
+					}
+				}
+				
+			});
+		</script>
+	</body>
+</html>

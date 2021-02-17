@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		
+				button,[type="button"]{
+					cursor: pointer;
+					min-width: 25px;
+				}
+	    </style>
+	    
+	</head>
+	<body>
+	     <div id="app">   
+		    <!-- v-model可以双向绑定 -->
+		    <input type="text" v-model="msg">    
+			 <!-- input也可以通过oninput事件来双向绑定 -->
+			<input type="text" v-bind:value="msg" placeholder="v-bind:value" v-on:input="valChange">
+			<input type="text" :value="msg" @input="msg=$event.target.value">
+		    <h1>{{msg}}</h1>
+	     </div> 
+	    <script>
+	        const app = new Vue({
+	          el: '#app',
+	          data: {
+	             msg:"你好"
+	          },
+	          methods: {
+	           valChange(event){
+				   // console.log(event);
+				   this.msg=event.target.value;
+			   }
+	          }
+	        });
+	    </script>
+	     
+		
+	</body>
+</html>

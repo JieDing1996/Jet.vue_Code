@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		
+				button,[type="button"]{
+					cursor: pointer;
+					min-width: 25px;
+				}
+	    </style>
+	    
+	</head>
+	<body> 
+	     <div id="app">   
+			  <cpn01 v-bind:pmsg="msg" v-bind:pmovies="movies"></cpn01>
+			  <h3>+++++++++++++</h3>
+			 <!-- <cpn02 v-bind:pmsg01="msg01" v-bind:pmovies01="movies01"></cpn02> -->
+			  <cpn02></cpn02>
+         </div>
+
+         <template id="temp01">
+			 <div>
+			 	<h3>{{pmsg}}</h3>
+			 	<ul>
+			 		<li v-for="item in pmovies">
+						{{item}}
+					</li>
+			 	</ul>
+			 </div>
+		 </template> 
+	 
+	     <template id="temp02">
+		  <div>
+			  <h3>{{pmsg01}}</h3>
+			  <ul>
+			  	<li v-for="item in pmovies01">{{item}}</li>
+			  </ul>
+		  </div>
+		 </template>
+		 
+	   <script>
+			const app = new Vue({
+			    el: '#app',
+			    data:{
+					msg:"你好",
+					msg01:"你好01",
+					movies:["海王","海贼王","火影忍者","杀戮都市"],
+					movies01:["海王01","海贼王01","火影忍者01","杀戮都市01"]
+				},
+				components:{
+					cpn01:{
+						template:"#temp01",
+						//  父传子可以理解为定义属性，子组件标签v-bind绑定属性 属性值为父组件data里的数据
+						props:["pmsg","pmovies"],  //  template代码块绑数据还是用的数组里的属性变量
+						data(){
+							return {}  //data函数必须return一个对象
+						}
+					},
+					cpn02:{
+						template:"#temp02",
+						props:{
+							pmsg01:{
+								type:String,
+								default:"这是默认值",
+								required:true  //required为true时意思是必须传值
+							},
+							pmovies01:{
+								type:Array,
+								default(){
+									return [];   //数组类型要通过函数返回一个数组
+								},
+								required:true
+							}
+						},
+						data(){
+							return {};
+						}
+					}
+				}
+			  });
+	       
+ 
+	    </script>
+ 
+	</body>
+</html>

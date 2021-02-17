@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>	
+	    <p>
+			https://www.npmjs.com/package/style-loader
+		</p>
+		<p>
+			安装css-loader:npm install --save-dev css-loader
+			               npm install style-loader --save-dev 
+		</p>
+		
+		<p>
+			webpack打包css报错（已解决）：UnhandledPromiseRejectionWarning: TypeError: this.getResolve is not a function
+		</p>
+		<h3>
+			原因是 css-loader 和 style-loader 版本过高
+		</h3>
+		
+		<dl>
+			<dt>解决方案：</dt>
+			<dd>
+				<p>
+					https://blog.csdn.net/qq_43377853/article/details/108485499
+				</p>
+				<p>
+					package.json里手动下调了一下版本
+				</p>
+				<p>
+					"css-loader": "^3.3.0",
+					"style-loader": "^1.0.0",
+				</p>
+				<p>然后再命令行中 依次输入：</p>
+				<p>npm install</p>
+				<p>npm dev</p>
+			</dd>
+		</dl>
+		<script type="text/javascript" src="dist/bundle.js"></script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	
+				[type="button"]{
+					color: #0f0;
+					cursor: pointer;
+					background: #000;
+				}
+	    </style>
+	    
+	</head>
+	<body>
+		
+		<!--插图片-->
+	    <div id="app">
+		     <ul>
+		     	<li v-for="(val,index) in movies">  <!--(值,索引)-->
+					{{index}}===={{val}}
+				</li>
+		     </ul>
+			 
+			 <ul>
+			 	<li v-for="(val,key,index) in DX01">
+					{{index}}==== {{key}}======={{val}}
+				</li>
+			 </ul>
+		</div>
+		<script type="text/javascript">
+          const app=new Vue({
+			  el:document.querySelector("#app"),
+			  data:{
+		        movies:["杀戮都市","火影忍者","八佰","电锯惊魂","死神来了"],
+				DX01:{
+					name:"丁杰",
+					age:18,
+					sex:"男",
+					hb:"巨乳"
+				}
+			  },
+			  methods:{
+		 
+			  }
+		  });  
+		 
+		</script>
+	</body>
+</html>

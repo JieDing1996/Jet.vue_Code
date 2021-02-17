@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		.c01{
+	    			color: #f00;
+	    		}
+				[type="button"]{
+					color: #0f0;
+					cursor: pointer;
+					background: #000;
+				}
+	    </style>
+	    
+	</head>
+	<body>
+		
+		<!--插图片-->
+	    <div id="app">
+		     <h1 v-bind:style="{'font-size':'20px'}">{{msg}}</h1>
+		   <!--  <h1 v-bind:style="{font-size:'50px'}">{{msg}}</h1> -->  <!-- 报错 -->
+		     <h1 v-bind:style="{'fontSize':'30px',color:'#f00'}">{{msg}}fontSize加引号</h1> <!-- fontSize加引号也没问题 -->
+		     <h1 v-bind:style="{fontSize:'30px',color:'#f00'}">{{msg}}</h1>
+		     <h1 v-bind:style="{fontSize:fS01,color:'#f00'}">{{msg}}</h1>
+		     <h1 v-bind:style="{fontSize:fS02+'px',color:'#f00'}">{{msg}}</h1>
+		     <h1 v-bind:style="getStyle()">{{msg}}</h1>		
+			 <h1 v-bind:style="[bs01,bs02]">{{msg}}</h1>			 
+		</div>
+		<script type="text/javascript">
+          const app=new Vue({
+			  el:document.querySelector("#app"),
+			  data:{
+				 msg :"牛逼",
+		         fS01:"40px",
+		         fS02:"50",
+		         fS03:"60",
+				 bs01:{'text-shadow':'0px 5px 5px #000','color':'#ff0'},
+				 bs02:{'font-size':'70px','font-weight':'bolder'}
+			  },
+			  methods:{
+		           getStyle(){
+					   return {fontSize:this.fS03+'px',color:'#0ff'};
+				   }
+			  }
+		  });  
+		 
+		</script>
+	</body>
+</html>

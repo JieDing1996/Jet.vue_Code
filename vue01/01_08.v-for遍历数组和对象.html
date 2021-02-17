@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		
+				button,[type="button"]{
+					color: #fff;
+					cursor: pointer;
+					background: #000;
+					min-width: 25px;
+				}
+	    </style>
+	    
+	</head>
+	<body>
+	    <div id="app">
+			<!-- 遍历数组 -->
+			<ul>
+				<li v-for="item in arry">{{item}}</li>
+			</ul>
+			<div>==============</div>
+			
+			<ul>
+				<li v-for="(item,index) in arry">{{index}}+++{{item}}</li>
+			</ul>
+			
+			<!-- 遍历对象 -->
+			<div>==============</div>
+			
+			<ul>
+				<li v-for="val in obj">{{val}}</li>
+			</ul>
+			<div>==============</div>
+			<ul>
+				<li v-for="(val,key) in obj">{{key}}+++{{val}}</li>
+			</ul>
+			<div>==============</div>
+			<ul>
+				<li v-for="(val,key,index) in obj">
+					{{index}}+++{{key}}+++{{val}}
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+          const app=new Vue({
+			  el:document.querySelector("#app"),
+			  data:{
+			     arry:["海贼王","火影忍者","杀戮都市","家庭教师"],
+				 obj:{
+					 name:"丁杰",
+					 age:25,
+					 sex:"男",
+					 height:175
+				 }
+			  } 
+		  });  
+		 
+		</script>
+	</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		
+				button,[type="button"]{
+					cursor: pointer;
+					min-width: 25px;
+				}
+	    </style>
+	    
+	</head>
+	<body> 
+	     <div id="app">   
+		     <!-- 3.使用组件 -->
+            <my-cpn></my-cpn>
+            <div>
+            	<my-cpn></my-cpn>
+            </div>
+          
+	     </div> 
+	   <script>
+			// 1.创建组件构造器对象
+			const cpnC=Vue.extend({
+				template:`
+				     <div>
+				        <h2>我是标题</h2>
+				        <p>我是内容, 哈哈哈哈</p>
+				        <p>我是内容, 呵呵呵呵</p>
+				      </div>
+                      ` //es5用"" es6中 tab键上面的点 ` 作用：字符串换行的时候视为一个整体
+			}); //参数为对象
+						
+			// 2.注册组件
+			Vue.component("my-cpn",cpnC); //参数1为标签名 "myCpn" "my-Cpn"都是错的 所以注意命名 强烈建议使用全部字母小写且有连接符连接的命名
+			                              //参数2为组件构造器名称
+	       
+			const app = new Vue({
+			    el: '#app',
+			    data: {
+			      
+			    }
+			  })
+	    </script>
+	      
+		
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		.col01{
+	    			color: #f00;
+	    		}
+	    </style>
+	    
+	</head>
+	<body>
+		
+		<!--插图片-->
+	    <div id="app">
+		    <h1>{{msg}}</h1>
+			<a v-bind:href="aUrl">百度一下</a>
+			<img v-bind:src="imgUrl" alt="">
+		</div>
+		<script type="text/javascript">
+          const app=new Vue({
+			  el:document.querySelector("#app"),
+			  data:{
+				 msg :"牛逼",
+				 aUrl:"http://www.baidu.com",
+				 imgUrl:"https://cnlang.org/static/image/common/logo.png"
+			  }
+		  });  
+		 
+		</script>
+	</body>
+</html>

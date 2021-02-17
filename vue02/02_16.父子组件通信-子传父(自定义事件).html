@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		
+				button,[type="button"]{
+					cursor: pointer;
+					min-width: 25px;
+				}
+	    </style>	    
+	</head>
+	<body> 
+	     <div id="app">   
+		    <cpn01 v-on:item-click="cpnclick"></cpn01>  <!-- itemclick cpnclick不能写成驼峰
+			                                                 建议小写或者item-click cpn-click
+															 cpnclick没有传参数，一般调用一个函
+															 数不传参，则会把event传过去，不过这
+															 里的cpnclick会默认把item传过去															 
+															 -->
+         </div>
+
+         <template id="temp01">	
+			 <div>
+				 	<button v-for="item in categories" @click="btnClick(item)">
+						{{item.name}}
+					</button>			 
+			 </div>
+		 </template> 
+	 
+	   
+	   <script>
+			const app = new Vue({
+			    el: '#app',
+			    data:{
+					msg:"你好啊" 
+				},
+				 components:{
+					 cpn01:{
+						 template:"#temp01",					 
+						 data(){
+							 return {
+								 categories:[
+									 {
+										id:"aaa",
+										name:"热门推荐"
+									 },
+									 {
+										id:"bbb",
+										name:"手机数码"
+									 },
+									 {
+										id:"ccc",
+										name:"家用家电"
+									 },
+									 {
+										id:"ddd",
+										name:"电脑办公"
+									 },
+								 ]
+							 };
+						 },
+						 methods:{
+							 btnClick(item){
+								 // 要把item传给父组件
+							     this.$emit("item-click",item);   //自定义事件绑在子组件标签上  参数1为发射的自定义事件名称 参数2为传递的参数
+							 }
+						 }
+					 }
+				 },
+				 
+			     methods:{
+					 cpnclick(item){   // 自定义组件调用的方法
+						 console.log(item);
+					 }
+				 }
+			  });
+	       
+ 
+	    </script>
+ 
+	</body>
+</html>

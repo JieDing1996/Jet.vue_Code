@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		
+				button,[type="button"]{
+					cursor: pointer;
+					min-width: 25px;
+				}
+	    </style>
+	    
+	</head>
+	<body> 
+	     <div id="app">   
+		    <cpnc02></cpnc02>
+			<h2>+++单独使用子组件+++</h2>
+			<cpnc01></cpnc01>  <!-- 报错   app里再注册一下就行-->
+	     </div> 
+		 
+	   <script>
+		   const cpnC1=Vue.extend({    //子组件
+			   template:` <div>
+		     	<h2>我是标题01</h2>
+		     	<p>我是内容，哈哈哈</p>
+		     </div>` 
+		   });
+		   
+		   const cpnC2=Vue.extend({    //父组件
+			   template:` <div>
+		     	<h2>我是标题02</h2>
+		     	<p>我是内容，呵呵呵</p>
+				<cpnc01></cpnc01>
+		     </div>`,
+			 components:{       //父组件构造器里注册一下子组件
+				 cpnc01:cpnC1  //这里已经解析成了代码
+			 }
+		   });
+		   
+		   // 上面cpnC2的代码解析完成的时候就变成:
+		   // template:` <div>
+		   // 	<h2>我是标题02</h2>
+		   // 	<p>我是内容，呵呵呵</p>
+		   // 				<cpnc01></cpnc01>
+		   // </div>
+		   // <div>
+		   // 	<h2>我是标题01</h2>
+		   // 	<p>我是内容，哈哈哈</p>
+		   // </div>
+		   // `    这样单独使用<cpnc01>就找不到了，所以要在app里再注册一下
+		   //  应该是{}作用域的问题
+		   
+		   // root组件 根组件
+			const app = new Vue({
+			    el: '#app',
+			    data: {
+			       
+			    },
+				 components:{
+					 cpnc02:cpnC2,
+					 cpnc01:cpnC1   //子组件可单独使用
+				 }
+			  });	       
+			 
+	    </script>
+	      
+		
+	</body>
+</html>

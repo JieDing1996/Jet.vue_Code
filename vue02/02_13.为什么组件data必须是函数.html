@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+	    		
+				button,[type="button"]{
+					cursor: pointer;
+					min-width: 25px;
+				}
+	    </style>
+	    
+	</head>
+	<body> 
+	     <div id="app">   
+			 <cpn01></cpn01>
+			 <cpn02></cpn02>
+			 <cpn02></cpn02>
+			 <cpn02></cpn02>
+         </div>
+
+		<template id="temp01">
+			<div>
+				<h3>{{title}}</h3>
+				<p>我是内容，哈哈哈</p>
+			</div>
+		</template>
+
+        <template id="temp02">
+			<div>
+			  <h1>{{counter}}</h1>
+			  <button @click="jian">-</button>
+			  <button @click="add">+</button>
+		    </div>
+		</template>
+
+	   <script>
+		   // 组件有自己保存数据的地方
+	        Vue.component("cpn01",{
+				template:"#temp01",
+				data(){
+					return {
+						title:"我是标题"
+					}   //返回一个对象
+				}
+			})
+			
+			Vue.component("cpn02",{
+				template:"#temp02",
+				data(){
+					return {
+						counter:0
+					}
+				},
+				methods:{
+					jian(){
+						this.counter--;
+					},
+					add(){
+						this.counter++;
+					}
+				}
+			});
+		  
+			const app = new Vue({
+			    el: '#app',
+			    data:{
+					msg:""
+				}
+			  });
+	       
+
+			 // 为什么组件data必须是函数
+		  // A. function abc() {
+		  //    	return {
+				// 	name:"丁杰",
+				// 	age:24
+				// }
+		  //    }
+			 
+			 // let obj01=abc();
+			 // let obj02=abc();
+			 // let obj03=abc();
+			 // obj01.name="小红";
+			 // 函数调用返回的对象都不一样
+			 // console.log(obj01);  
+			 // console.log(obj02);
+			 // console.log(obj03);
+			 
+		     const obj={
+				 name:"丁杰",
+				 age:24
+			 }	 
+			 
+			 function abc() {
+			 	return obj;
+			 } 
+			 
+			 let obj01=abc();
+			 let obj02=abc();
+			 let obj03=abc();
+			 obj01.name="小红";
+			 // 函数调用返回的对象都一样,一改全改
+			 console.log(obj01);  
+			 console.log(obj02);
+			 console.log(obj03);
+			 
+			 //  所以不能是下面那个样子
+			 // Vue.component("cpn01",{
+			 // 	template:"#temp01",
+			 // 	data:{
+				// 	title:"我是标题"
+				// }   返回的是同一个data
+			 // 	}
+			 // })
+			 		  
+	    </script>
+	      
+
+		
+	</body>
+</html>

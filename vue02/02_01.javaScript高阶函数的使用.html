@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	    <style>
+	    		*{
+	    			margin: 0;
+	    			padding: 0;
+	    		}
+
+				button,[type="button"]{
+					cursor: pointer;
+					min-width: 25px;
+				}
+	    </style>
+	    
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			// es6 对象的新写法
+			let age=18;
+			let obj02={
+				name:"小明",
+				age:24,
+			}
+			let obj01={
+				name:"王小二",
+				age,  // 等同于 age:age 当键值对前后相等时，可以这样简写
+				obj02,
+				play(x){   // 方法也可以简写 但是不能用箭头函数
+					console.log("喜欢玩"+x);
+				}
+			}
+			
+			console.log(obj01.age);
+			obj01.play("游戏");
+			console.log(obj01.obj02);
+			
+			
+                  let books=[
+          	              {
+          	                id: 1,
+          	                name: '《算法导论》',
+          	                date: '2006-9',
+          	                price: 85.00,
+          	                count: 1
+          	              },
+          	              {
+          	                id: 2,
+          	                name: '《UNIX编程艺术》',
+          	                date: '2006-2',
+          	                price: 59.00,
+          	                count: 1
+          	              },
+          	              {
+          	                id: 3,
+          	                name: '《编程珠玑》',
+          	                date: '2008-10',
+          	                price: 39.00,
+          	                count: 1
+          	              },
+          	              {
+          	                id: 4,
+          	                name: '《代码大全》',
+          	                date: '2006-3',
+          	                price: 128.00,
+          	                count: 1
+          	              }
+          	            ];
+						
+				let sum01=0;		
+				// for(let i in books){
+				//    sum01+=books[i].price;
+				// }		
+				
+				for(let i of books){
+					// console.log(i);  输出每一项
+					sum01+=i.price;
+				}
+				
+		        console.log("总价格：￥"+sum01);
+				
+				const arr01=[50,55,47,56,102,421,13];
+				// let arr02=[];
+				// for(let a of arr01){
+				// 	if(a<100){
+				// 		arr02.push(a*2);
+				// 	}
+				// }
+				
+				// console.log(arr02);
+				
+				// 1.filter函数的使用
+				// filter中的回调函数有一个要求,必须返回一个boolean值
+				// true:当返回true时,函数内部会自动将这次回调的n加入到新的数组中,所以只要定义变量接受就行了
+				// false:当返回false时,函数内部会过滤掉这次的n
+				let newArr01=arr01.filter(function (n) {
+					return n<100;  // n=50  n<100为true;n=421  n<100为false;
+				});
+				
+				console.log(newArr01);
+				
+			    // 2.map函数的使用
+				
+				let newArr02=newArr01.map(function (n) {
+					return n*2;  //数组每一项都乘2
+				});
+				
+				console.log(newArr02);
+				
+				// 3.reduce函数的使用
+				// reduce作用对数组中所有的内容进行汇总
+				// https://www.cnblogs.com/planetwithpig/p/11733008.html
+				let arr02=[10,20,30,40];
+				let newArr03=arr02.reduce(function (preValue,n) {   //preValue为上一个函数返回值，第一次为下面的初始化值0。n为数组中的每一项
+				     return preValue+n;
+				},0);//初始化为0，相当于let sum=0;
+				
+				//第一次  preValue:0   n:10               10
+				//第二次  preValue:0+10   n:20            30
+				//第三次  preValue:0+10+20   n:30         60
+				//第四次  preValue:0+10+20+30   n:40      100 
+				//newArr03=100
+				console.log("newArr03值为"+newArr03);  //100
+				
+				
+				//filter,map,reduce组合
+				const nums=[10,20,111,222,444,40,50];
+				let total=nums.filter(function (n) {
+					return n<100;
+				}).map(function (n) {
+					return n*2;
+				}).reduce(function (preVal,n) {
+					return preVal+n;
+				},0);
+				
+				console.log("total值为"+total); 
+				
+				
+				//reduce  books				
+				console.log("总价格:￥"+books.reduce(function (preVal,n) {
+					return  preVal+n.price;
+				},0));
+				
+				
+		</script>
+	</body>
+</html>
